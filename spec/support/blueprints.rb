@@ -1,9 +1,9 @@
 require 'machinist/active_record'
 
-# Add your blueprints here.
-#
-# e.g.
-#   Post.blueprint do
-#     title { "Post #{sn}" }
-#     body  { "Lorem ipsum..." }
-#   end
+Person.blueprint do
+  name { Faker::Name.name }
+  sport  { "Football" }
+  person_type {"Athlete" }
+  email { Faker::Internet.email}
+  password { "secret"}
+end

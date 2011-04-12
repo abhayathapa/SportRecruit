@@ -1,6 +1,12 @@
 SportRecruit::Application.routes.draw do
 
-  root :to => "home#index"
+  devise_for :people
+
+  resources :athletes
+
+  resources :recruiters
+
+  root :to => "people#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

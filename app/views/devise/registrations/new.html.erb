@@ -3,6 +3,15 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <p><%= f.label :name %><br />
+  <%= f.text_field :name %></p>
+
+  <p><%= f.label :sport %><br />
+  <%= f.select :sport, [ ['Football', 'Football'], ['Ice Hockey', 'Ice Hockey'], ['American Football', 'American Football']] %> </p>
+
+  <p><%= f.label :person_type , "As:" %><br />
+  <%= f.select :person_type, [ ['Athlete', 'Athlete'], ['Recruiter', 'Recruiter']] %> </p>
+
   <p><%= f.label :email %><br />
   <%= f.email_field :email %></p>
 

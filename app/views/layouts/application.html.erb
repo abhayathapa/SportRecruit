@@ -3,15 +3,50 @@
 <head>
   <title>SportRecruit</title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'jquery.min', 'rails', 'application' %>
   <%= csrf_meta_tag %>
 </head>
+
 <body>
+  <div id="upbg"></div>
+  <div id="outer">
+    <div id="header">
+      <div id="headercontent">
+        <h1>SportRecruit</h1>
+        <h2>The tough job of finding talented athletes just got a little easier!</h2>
+      </div>
+    </div>
+    <div id="menu">
+      <ul>
+        <% if person_signed_in? %>
+          <span class = 'person_name'><%= current_person.email %></span>
+          <li> <%#= link_to "My page", person_root_path %> </li>
+          <li> <%= link_to "Log out",destroy_person_session_path %> </li>
+        <% else %>
+          <li> <%= link_to "Sign In",new_person_session_path %> </li>
+          <li> <%= link_to "Sign Up",new_person_registration_path %> </li>
+        <% end %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+      </ul>
+    </div>
+    <div id="menubottom"></div>
 
-  <%= yield %>
+    <div id="content">
 
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+      <%= yield %>
+
+    </div>
+
+    <div id="footer">
+      <div class="left">&copy; 2011 Sprout Technology Services</div>
+    </div>
+  </div>
 </body>
+
 </html>
+
+
+

@@ -20,7 +20,7 @@ end
 
 group :test do
   gem 'machinist','>=2.0.0.beta1'
-  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'shoulda-matchers'

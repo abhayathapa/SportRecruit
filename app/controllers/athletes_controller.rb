@@ -4,7 +4,9 @@ class AthletesController < ApplicationController
 
   def index
     @athlete = current_person.athlete
-    if @athlete.dob == nil
+    # @stat = @athlete.stat
+    if @athlete.gender == nil || @athlete.gender == ""
+      flash[:notice] = "Gender CANNOT be Empty !!"
       render "_personal_info"
     end
   end
@@ -16,9 +18,10 @@ class AthletesController < ApplicationController
   def update
     @athlete = current_person.athlete
     if @athlete.update_attributes(params[:athlete])
-      redirect_to athletes_path, :notice => "Athlete info was successfully updated."
+      flash[:notice] = "Athlete Info was Successfully Updated."
+      redirect_to athletes_path
     else
-      render "edit", :notice => "Unable to update. Try again. "
+      render "edit", :notice => "Unable to Update. Try again. "
     end
   end
 

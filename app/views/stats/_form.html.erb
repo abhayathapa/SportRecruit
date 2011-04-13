@@ -1,0 +1,14 @@
+<%= semantic_form_for [@athlete, @stat] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :matches %>
+    <%= f.input :wins %>
+    <%= f.input :losses %>
+    <%= f.input :goals %>
+    <%= f.input :assists %>
+    <%= f.input :cleansheets %>
+    <%= f.input :position, :as =>:select, :collection => @sport_position %>
+  <% end %>
+    <%= f.buttons %>
+<% end %>
+
+

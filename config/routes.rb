@@ -2,7 +2,9 @@ SportRecruit::Application.routes.draw do
 
   devise_for :people
 
-  resources :athletes
+  resources :athletes do
+    resource :stat
+  end
 
   resources :recruiters
 

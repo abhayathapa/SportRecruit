@@ -27,6 +27,7 @@ class Person < ActiveRecord::Base
   def create_athlete_or_recruiter
     if self.person_type == "Athlete"
       self.build_athlete()
+      self.athlete.build_stat()
     else
       self.build_recruiter()
     end

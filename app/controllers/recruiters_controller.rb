@@ -9,7 +9,7 @@ class RecruitersController < ApplicationController
     end
 
     if @recruiter.coach == nil
-      render "_form"
+      render "_form", :notice => "Coach is Required ! "
     end
   end
 

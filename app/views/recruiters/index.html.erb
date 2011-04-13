@@ -1,0 +1,18 @@
+<%= render "search_button" %>
+
+<h3> <%= "#{current_person.name}'s Profile" %> </h3>
+<p> <%= @recruiter.nickname %> </p>
+<p> <%= @recruiter.establishment %> </p>
+<p> <%= @recruiter.country %> </p>
+<p> <%= @recruiter.coach %> </p>
+
+
+<%= link_to "Edit", edit_recruiter_path(@recruiter) %>
+
+<% if(@people) %>
+  <h2> Search Results: </h2>
+  <% @people.each do |a| %>
+    <%= a.name %>
+    <%= a.athlete.weight %>
+  <% end %>
+<% end %>

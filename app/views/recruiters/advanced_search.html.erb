@@ -1,0 +1,21 @@
+<%= render "search_button" %>
+
+<h2> Advanced Search for <%= current_person.sport %> ( Total .. Athletes )</h2> <br/>
+
+<%= form_tag advanced_search_path, :method => :get do %>
+   Weight : From <%= select_tag :weight_min, options_for_select((30..100).step(10).to_a, params[:weight_min]) %> kg To <%= select_tag :weight_max, options_for_select((30..300).step(10).to_a.reverse, params[:weight_max]) %> kg <br/>
+   Height : From <%= select_tag :height_min, options_for_select((50..100).step(10).to_a, params[:height_min]) %> cm To <%= select_tag :height_max, options_for_select((50..250).step(10).to_a.reverse, params[:height_max]) %> cm <br/>
+   <%= submit_tag "Begin Search" %>
+<% end %>
+
+<% if @searched_athletes %>
+  <h2> Search Results: </h2>
+  <% @searched_athletes.each do |a| %>
+    <%= a.person.name %>
+    Height : <%= a.height %>
+    Weight : <%= a.weight %> <br/>
+  <% end %>
+<% end %>
+
+
+<%= link_to "Back to Home" , recruiters_path %>

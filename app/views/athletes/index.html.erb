@@ -1,0 +1,11 @@
+
+<h3> <%= "#{current_person.name}'s Profile" %> </h3>
+<p> <%= @athlete.dob %> </p>
+<p> <%= @athlete.gender %> </p>
+<p> <%= @athlete.country %> </p>
+<p> <%= @athlete.height %> </p>
+<p> <%= @athlete.weight %> </p>
+
+
+<%= link_to "Edit", edit_athlete_path(@athlete) %>
+<%#= link_to "Delete", athlete_path(@athlete), :method => :delete, :confirm => "Are u sure ? " %>

@@ -6,6 +6,8 @@ SportRecruit::Application.routes.draw do
 
   resources :recruiters
 
+  get 'advanced_search' => 'recruiters#advanced_search'
+
   root :to => "people#index"
 
   # The priority is based upon order of creation:

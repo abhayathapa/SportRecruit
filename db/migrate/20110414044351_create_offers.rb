@@ -3,6 +3,7 @@ class CreateOffers < ActiveRecord::Migration
     create_table :offers do |t|
       t.integer :recruiter_id
       t.integer :athlete_id
+      t.string :status, :default => "Pending"
 
       t.timestamps
     end

@@ -10,6 +10,7 @@ gem 'formtastic', '~>1.2.3'
 
 gem 'devise'
 gem 'jquery-rails'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'ffaker'

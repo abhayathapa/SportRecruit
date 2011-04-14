@@ -24,6 +24,22 @@ class AthletesController < ApplicationController
     end
   end
 
+  def notification
+    @recruiter = Recruiter.find(params[:id])
+    @status = params[:status]
+    p @status
+    @athlete = current_person.athlete
+    Offer.respond_to_deal(@athlete,@recruiter,@status)
+    respond_to  do |format|
+      format.html{redirect_to my_offers_athletes_path, flash[:notice] = "You hv responded to this offer !" }
+      format.js
+    end
+  end
+
+  def my_offers
+    @athlete = current_person.athlete
+  end
+
   # def destroy
   #   @athlete = current_person.athlete
   #   @athlete.destroy

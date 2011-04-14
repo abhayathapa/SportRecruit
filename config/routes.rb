@@ -4,6 +4,7 @@ SportRecruit::Application.routes.draw do
 
   resources :athletes do
     collection do
+      get 'notification'
       get 'my_offers'
     end
     resource :stat

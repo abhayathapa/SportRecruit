@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110414044351) do
   create_table "offers", :force => true do |t|
     t.integer  "recruiter_id"
     t.integer  "athlete_id"
+    t.string   "status",       :default => "Pending"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

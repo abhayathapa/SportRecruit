@@ -5,7 +5,7 @@ class Person < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :sport, :person_type, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :sport, :person_type, :password, :password_confirmation, :remember_me, :avatar_url
 
   has_one :athlete , :dependent => :destroy
   has_one :recruiter, :dependent => :destroy

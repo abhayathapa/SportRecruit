@@ -1,6 +1,5 @@
 module RecruitersHelper
 
-
   def check_offer(athlete,recruiter)
     if Offer.existing_offer(athlete,recruiter).size > 0
       content_tag :p do

@@ -1,3 +1,5 @@
+<%= render "search_button" %>
+
 <h4>My Offers :</h4>
 
 <table id="table-list" >
@@ -7,7 +9,7 @@
       <th scope="col">Height</th>
       <th scope="col">Weight</th>
       <th scope="col">Country</th>
-      <th scope="col"></th>
+      <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +19,7 @@
       <td><%= a.athlete.height %></td>
       <td><%= a.athlete.weight %></td>
       <td><%= a.athlete.country %></td>
+      <td><%= a.status %></td>
     </tr>
     <% end %>
   </tbody>

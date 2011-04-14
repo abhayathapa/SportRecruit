@@ -11,6 +11,11 @@ class Offer < ActiveRecord::Base
     Offer.where("athlete_id = ?" , athlete.id).where("recruiter_id =?" , recruiter.id)
   end
 
+  def self.respond_to_deal(athlete,recruiter,new_status)
+    offer = Offer.where("athlete_id = ?" , athlete.id).where("recruiter_id =?" , recruiter.id)
+    offer.first.update_attributes(:status => new_status)
+  end
+
 end
 
 # == Schema Information

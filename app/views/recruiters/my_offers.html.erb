@@ -1,0 +1,25 @@
+<h4>My Offers :</h4>
+
+<table id="table-list" >
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Height</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Country</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recruiter.offers.each do |a| %>
+    <tr>
+      <td><%= a.athlete.person.name %></td>
+      <td><%= a.athlete.height %></td>
+      <td><%= a.athlete.weight %></td>
+      <td><%= a.athlete.country %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back to Home" , recruiters_path %>

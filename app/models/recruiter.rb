@@ -1,5 +1,7 @@
 class Recruiter < ActiveRecord::Base
 
+  has_many :offers, :dependent => :destroy
+
   belongs_to :person
 
 end

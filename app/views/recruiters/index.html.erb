@@ -10,9 +10,28 @@
 <%= link_to "Edit", edit_recruiter_path(@recruiter) %>
 
 <% if(@people) %>
-  <h2> Search Results: </h2>
-  <% @people.each do |a| %>
-    <%= a.name %>
-    <%= a.athlete.weight %>
-  <% end %>
+  <h4>Search Results :</h4>
+  <table id="table-list" >
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Height</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Country</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @people.each do |a| %>
+        <tr>
+          <td><%= a.name %></td>
+          <td><%= a.athlete.height %></td>
+          <td><%= a.athlete.weight %></td>
+          <td><%= a.athlete.country %></td>
+          <td class = "make_an_offer<%= a.athlete.id %>"> <%= check_offer(a.athlete,@recruiter) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 <% end %>

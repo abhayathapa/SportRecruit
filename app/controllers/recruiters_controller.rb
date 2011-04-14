@@ -9,7 +9,8 @@ class RecruitersController < ApplicationController
     end
 
     if @recruiter.coach == nil
-      render "_form", :notice => "Coach is Required ! "
+      flash[:notice] = "Coach is Required ! "
+      render "_form"
     end
   end
 
@@ -20,9 +21,11 @@ class RecruitersController < ApplicationController
   def update
     @recruiter = current_person.recruiter
     if @recruiter.update_attributes(params[:recruiter])
-      redirect_to recruiters_path, :notice => "Recruiter info was successfully updated."
+      flash[:notice] = "Recruiter info was successfully updated."
+      redirect_to recruiters_path
     else
-      render "edit", :notice => "Unable to update. Try again. "
+      flash[:notice] = "Unable to update. Try again. "
+      render "edit"
     end
   end
 
@@ -35,7 +38,21 @@ class RecruitersController < ApplicationController
     elsif params[:weight_min] && params[:weight_max]
       @searched_athletes = Athlete.in_range(weight, :weight_min, :weight_max)
     end
-
   end
+
+  def notification
+    @athlete = Athlete.find(params[:id])
+    @recruiter = current_person.recruiter
+    Offer.deal(@athlete,@recruiter)
+    respond_to  do |format|
+      format.html{redirect_to advanced_search_recruiters_path, flash[:notice] = "#{@athlete.person.name} has an offer from #{@recruiter.person.name}"}
+      format.js
+    end
+  end
+
+  def my_offers
+    @recruiter = current_person.recruiter
+  end
+
 
 end

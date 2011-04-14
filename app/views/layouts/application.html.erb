@@ -20,7 +20,14 @@
       <ul>
         <% if person_signed_in? %>
           <li> Welcome <%= current_person.name %> | </li>
-          <li> <%= link_to "Log out",destroy_person_session_path %> </li>
+
+          <% if current_person.person_type == "Athlete" %>
+            <li> <%= link_to "My Offers", my_offers_athletes_path %> </li>
+          <% else %>
+            <li> <%= link_to "My Offers", my_offers_recruiters_path %> </li>
+          <% end %>
+          <li class = "log_out"> <%= link_to "Log out",destroy_person_session_path %> </li>
+
         <% else %>
           <li> <%= link_to "Sign In",new_person_session_path %> </li>
           <li> <%= link_to "Sign Up",new_person_registration_path %> </li>

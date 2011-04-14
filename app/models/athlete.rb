@@ -1,6 +1,7 @@
 class Athlete < ActiveRecord::Base
 
-  has_one :stat
+  has_one :stat, :dependent => :destroy
+  has_many :offers, :dependent => :destroy
 
   belongs_to :person
 

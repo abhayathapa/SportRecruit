@@ -3,12 +3,19 @@ SportRecruit::Application.routes.draw do
   devise_for :people
 
   resources :athletes do
+    collection do
+      get 'my_offers'
+    end
     resource :stat
   end
 
-  resources :recruiters
-
-  get 'advanced_search' => 'recruiters#advanced_search'
+  resources :recruiters do
+    collection do
+      get 'notification'
+      get 'advanced_search'
+      get 'my_offers'
+    end
+  end
 
   root :to => "people#index"
 

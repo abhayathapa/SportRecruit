@@ -1,0 +1,35 @@
+%h4
+  My Offers :
+
+%table#table-list
+  %thead
+    %tr
+      %th{:scope =>"col"}
+        Name
+      %th{:scope =>"col"}
+        Nickname
+      %th{:scope =>"col"}
+        Establishment
+      %th{:scope =>"col"}
+        Country
+      %th{:scope =>"col"}
+        Coach
+      %th{:scope =>"col"}
+  %tbody
+    - @athlete.offers.each do |a|
+      %tr
+        %td
+          = a.recruiter.person.name
+        %td
+          = a.recruiter.nickname
+        %td
+          = a.recruiter.establishment
+        %td
+          = a.recruiter.country
+        %td
+          = a.recruiter.coach
+        %td{:class => "view_offers#{a.recruiter.id}"}
+          = view_offers(@athlete,a.recruiter)
+
+= link_to "Back to Home" , athletes_path
+

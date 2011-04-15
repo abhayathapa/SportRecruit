@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Athlete do
   it {should belong_to :person}
   it {should have_one :stat}
+  it {should have_many :offers}
 end
 
 # == Schema Information

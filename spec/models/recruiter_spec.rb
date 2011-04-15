@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Recruiter do
   it {should belong_to :person}
+  it {should have_many :offers}
 end
 
 # == Schema Information

@@ -1,33 +1,40 @@
 <%= render "search_button" %>
 
-<h3> <%= "#{current_person.name}'s Profile" %> </h3>
-<p> <%= @recruiter.nickname %> </p>
-<p> <%= @recruiter.establishment %> </p>
-<p> <%= @recruiter.country %> </p>
-<p> <%= @recruiter.coach %> </p>
-
-
-<%= link_to "Edit", edit_recruiter_path(@recruiter) %>
+<h3> <%= "#{current_person.name}'s Profile" %> </h3><br/>
+<div class = "personal_info">
+  <div class = "edit_link"> <%= link_to "Edit", edit_recruiter_path(@recruiter) %> </div>
+  <p> Sport : <span> <%= @recruiter.person.sport %> </span> </p>
+  <p> Nickname : <span> <%= @recruiter.nickname %> </span> </p>
+  <p> Establishment : <span> <%= @recruiter.establishment %> </span> </p>
+  <p> Country : <span> <%= @recruiter.country %> </span> </p>
+  <p> Coach : <span> <%= @recruiter.coach %> </span> </p>
+</div>
 
 <% if(@people) %>
-  <h4>Search Results :</h4>
+  <h3>Search Results :</h3>
   <table id="table-list" >
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Height</th>
-        <th scope="col">Weight</th>
-        <th scope="col">Country</th>
-        <th scope="col"></th>
+         <th scope="col">Name</th>
+          <th scope="col">Sport</th>
+          <th scope="col">Age</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Country</th>
+          <th scope="col">Weight</th>
+          <th scope="col">Height</th>
+          <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <% @people.each do |a| %>
         <tr>
           <td><%= a.name %></td>
-          <td><%= a.athlete.height %></td>
-          <td><%= a.athlete.weight %></td>
+          <td><%= a.sport %></td>
+          <td><%= get_age(a.athlete) %></td>
+          <td><%= a.athlete.gender %></td>
           <td><%= a.athlete.country %></td>
+          <td><%= a.athlete.weight %></td>
+          <td><%= a.athlete.height %></td>
           <td class = "make_an_offer<%= a.athlete.id %>"> <%= check_offer(a.athlete,@recruiter) %></td>
         </tr>
       <% end %>

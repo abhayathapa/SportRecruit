@@ -1,22 +1,30 @@
 <%= render "search_button" %>
 
-<h2> Advanced Search for <%= current_person.sport %> ( Total .. Athletes )</h2> <br/>
+<h3> Advanced Search for <%= current_person.sport %> ( Total <%= Person.athlete_count(current_person.sport) %> Athletes )</h3> <br/>
 
-<%= form_tag advanced_search_recruiters_path, :method => :get do %>
-  Weight : From <%= select_tag :weight_min, options_for_select((30..100).step(10).to_a, params[:weight_min]) %> kg To <%= select_tag :weight_max, options_for_select((30..300).step(10).to_a.reverse, params[:weight_max]) %> kg <br/>
-  Height : From <%= select_tag :height_min, options_for_select((50..100).step(10).to_a, params[:height_min]) %> cm To <%= select_tag :height_max, options_for_select((50..250).step(10).to_a.reverse, params[:height_max]) %> cm <br/>
-  <%= submit_tag "Begin Search" %>
-<% end %>
+<div class = "advanced_search_form">
+  <%= form_tag advanced_search_recruiters_path, :method => :get do %>
+  <p>Age : From <%= select_tag :age_min, options_for_select((10..50).step(2).to_a, params[:age_min]) %> yrs To <%= select_tag :age_max, options_for_select((10..50).step(2).to_a.reverse, params[:age_max]) %> yrs </p>
+  <p>Gender : <%= select_tag :gender, options_for_select(["Male","Female"], params[:gender]) %> </p>
+  <p>Country : <%= text_field_tag :country, params[:country] %> </p>
+  <p>Weight : From <%= select_tag :weight_min, options_for_select((30..300).step(10).to_a, params[:weight_min]) %> kg To <%= select_tag :weight_max, options_for_select((30..300).step(10).to_a.reverse, params[:weight_max]) %> kg </p>
+  <p>Height : From <%= select_tag :height_min, options_for_select((50..250).step(10).to_a, params[:height_min]) %> cm To <%= select_tag :height_max, options_for_select((50..250).step(10).to_a.reverse, params[:height_max]) %> cm </p>
+    <%= submit_tag "Begin Search" %>
+  <% end %>
+</div>
 
 <% if @searched_athletes %>
-  <h4>Search Results :</h4>
-  <table id="table-list" >
+  <h3>Search Results :</h3>
+  <table id="table-list">
     <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Height</th>
-        <th scope="col">Weight</th>
+        <th scope="col">Sport</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
         <th scope="col">Country</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Height</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -24,9 +32,12 @@
       <% @searched_athletes.each do |a| %>
         <tr>
           <td><%= a.person.name %></td>
-          <td><%= a.height %></td>
-          <td><%= a.weight %></td>
+          <td><%= a.person.sport %></td>
+          <td><%= get_age(a) %></td>
+          <td><%= a.gender %></td>
           <td><%= a.country %></td>
+          <td><%= a.weight %></td>
+          <td><%= a.height %></td>
           <td class = "make_an_offer<%= a.id %>"> <%= check_offer(a,@recruiter) %></td>
         </tr>
       <% end %>

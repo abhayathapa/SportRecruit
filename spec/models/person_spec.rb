@@ -14,6 +14,7 @@ describe Person do
       Person.first.sport.should == "Ice Hockey"
 
       Athlete.count.should == 1
+      Stat.count.should == 1
       Person.first.person_type.should == "Athlete"
       Athlete.first.person_id.should == Person.first.id
 

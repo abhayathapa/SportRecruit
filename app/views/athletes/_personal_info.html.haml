@@ -3,8 +3,8 @@
     =f.input :dob
     =f.input :gender, :as => :select, :collection => ["Male", "Female"]
     =f.input :country
-    =f.input :height
-    =f.input :weight
+    =f.input :height , :label => "Height (in cm)", :input_html => {  :size => 8 }
+    =f.input :weight , :label => "Weight (in kg)", :input_html => {  :size => 8 }
     =f.buttons
 
 = link_to "Skip This for Now", athletes_path

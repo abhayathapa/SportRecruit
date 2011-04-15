@@ -1,26 +1,38 @@
 %h3
   = "#{current_person.name}'s Profile"
-%p
-  DOB :
-  =@athlete.dob
-%p
-  Gender :
-  = @athlete.gender
-%p
-  Country :
-  = @athlete.country
-%p
-  Height :
-  = @athlete.height
-%p
-  Weight :
-  = @athlete.weight
-
-= link_to "Edit Personal Info", edit_athlete_path(@athlete)
 %br
-= link_to "Edit Stats", edit_athlete_stat_path(@athlete)
+%h4
+  = "Sport : #{current_person.sport}"
+%br
+.personal_info
+  .edit_link
+    = link_to "Edit", edit_athlete_path(@athlete)
+  %p
+    DOB :
+    %span
+      =@athlete.dob
+  %p
+    Gender :
+    %span
+      = @athlete.gender
+  %p
+    Country :
+    %span
+      = @athlete.country
+  %p
+    Height :
+    %span
+      = @athlete.height
+  %p
+    Weight :
+    %span
+      = @athlete.weight
 
-= render :partial => "stats/stats", :locals => {:athlete => @athlete}
+.stat_info
+  .edit_link
+    = link_to "Edit", edit_athlete_stat_path(@athlete)
+
+  = render :partial => "stats/stats", :locals => {:athlete => @athlete}
 
 
 

@@ -5,7 +5,7 @@ class Person < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :sport, :person_type, :password, :password_confirmation, :remember_me, :avatar_url
+  attr_accessible :name, :email, :sport, :person_type, :password, :password_confirmation, :remember_me
 
   has_one :athlete , :dependent => :destroy
   has_one :recruiter, :dependent => :destroy
@@ -20,6 +20,10 @@ class Person < ActiveRecord::Base
     if search
       Person.where('person_type'=>'Athlete').where('name LIKE ?',"%#{search}%")
     end
+  end
+
+  def self.athlete_count(sport)
+    Person.where("person_type = ?", "Athlete").where("sport =?", sport).size
   end
 
 

@@ -9,6 +9,14 @@ class Athlete < ActiveRecord::Base
     where("#{attribute} >= ? ", min).where("#{attribute} <= ?", max)
   end
 
+  def self.age_range(min, max )
+    where("dob<= ? ", (DateTime.now-min.to_i.years).to_date).where("dob >= ?", (DateTime.now-max.to_i.years).to_date)
+  end
+
+  def self.search_field(attribute, value )
+    where("#{attribute} = ? ", value)
+  end
+
 end
 
 # == Schema Information

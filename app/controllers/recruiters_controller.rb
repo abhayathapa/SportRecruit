@@ -8,8 +8,8 @@ class RecruitersController < ApplicationController
       @people = Person.search(params[:search])
     end
 
-    if @recruiter.coach == nil
-      flash[:notice] = "Coach is Required ! "
+    if @recruiter.coach == nil || @recruiter.coach == ""
+      flash[:notice] = "Update your Profile (at least Coach Required) !!"
       render "_form"
     end
   end
@@ -33,10 +33,11 @@ class RecruitersController < ApplicationController
     @athletes = Athlete.all
     @recruiter = current_person.recruiter
 
-    if params[:weight_min] && params[:weight_max] && params[:height_min] && params[:height_max]
-      @searched_athletes = Athlete.in_range("weight", params[:weight_min], params[:weight_max]).in_range("height", params[:height_min], params[:height_max])
-    elsif params[:weight_min] && params[:weight_max]
-      @searched_athletes = Athlete.in_range(weight, :weight_min, :weight_max)
+    if params[:gender]
+      @searched_athletes = Athlete.age_range( params[:age_min], params[:age_max] ).in_range("weight", params[:weight_min], params[:weight_max] ).in_range("height", params[:height_min], params[:height_max] ).search_field("gender", params[:gender])
+    end
+    if params[:country]!= ""
+      @searched_athletes = Athlete.age_range( params[:age_min], params[:age_max] ).in_range("weight", params[:weight_min], params[:weight_max] ).in_range("height", params[:height_min], params[:height_max] ).search_field("gender", params[:gender]).search_field("country", params[:country])
     end
   end
 

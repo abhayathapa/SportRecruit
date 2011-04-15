@@ -5,7 +5,7 @@ class AthletesController < ApplicationController
   def index
     @athlete = current_person.athlete
     if @athlete.gender == nil || @athlete.gender == ""
-      flash[:notice] = "Gender CANNOT be Empty !!"
+      flash[:notice] = "Update your Profile (at least Gender Required) !!"
       render "_personal_info"
     end
   end

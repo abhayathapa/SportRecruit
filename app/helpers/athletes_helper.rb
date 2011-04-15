@@ -13,7 +13,9 @@ module AthletesHelper
          ["Offer #{recruiter.offers.where("athlete_id= ?", athlete.id).first.status}!"].join(' ')
        end
     end
-
   end
 
+  def get_age(athlete)
+    (DateTime.now.to_date - athlete.dob).to_i/365
+  end
 end

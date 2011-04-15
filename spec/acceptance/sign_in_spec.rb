@@ -16,7 +16,6 @@ feature "Articles", %q{
       fill_in("Password", :with => "sercet")
       click_button("Sign in")
       page.should have_content("Invalid email or password.")
-      sleep(2)
     end
 
     scenario "Sign in success", :js => true do
@@ -24,9 +23,7 @@ feature "Articles", %q{
       fill_in("Email", :with => "#{@person.email}")
       fill_in("Password", :with => "#{@person.password}")
       click_button("Sign in")
-      sleep(2)
       page.should have_content("Welcome #{@person.name}")
-      sleep(2)
     end
 
   end

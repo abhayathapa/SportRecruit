@@ -13,7 +13,6 @@ I want to be able to sign up
     fill_in("Password confirm", :with => "secret")
     click_button("Sign up")
     page.should have_content("Name can't be blank")
-    sleep(2)
   end
 
   scenario "Sign up success", :js => true do
@@ -23,9 +22,7 @@ I want to be able to sign up
     fill_in("Password", :with => "secret")
     fill_in("Password confirm", :with => "secret")
     click_button("Sign up")
-    sleep(2)
     page.should have_content("Welcome Abhaya")
-    sleep(2)
   end
 
 end
